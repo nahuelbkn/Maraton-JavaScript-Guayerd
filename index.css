@@ -1,0 +1,39 @@
+body {
+  font-family: monospace;
+  margin-left: 1.5em;
+}
+
+.contenedor {
+  padding: 1em;
+  margin: 0.5em 0;
+  background-color: lavender;
+}
+
+/* Ej 9 */
+.usuario-contenedor{
+  background-color: beige;
+  padding: 0.2em;
+  width: 35em;
+  margin: 0.5em 0;
+  border: 1px black dashed;
+}
+
+.usuario-contenedor div {
+  margin: 0.5em 0;
+}
+
+.usuario-contenedor span {
+  margin: 0 0.5em;
+}
+
+.usuario-contenedor .title {
+  font-weight: bold;
+  font-size: large;
+  color: black;
+}
+
+span.hecho
+{
+  background-color: rgb(15, 128, 15);
+  color: aliceblue;
+}
