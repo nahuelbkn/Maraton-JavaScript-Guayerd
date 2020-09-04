@@ -245,11 +245,12 @@ const usuarios = [
 
 let div9Resultado = document.querySelector('div.ej9-resultado');
 
+let contenido;
 
 
 usuarios.forEach(function(usuario)
 {
-  div9Resultado.innerHTML += 
+  contenido += 
       `<div class="usuario-contenedor">
         <div class="fila1">
           <span class="title">Nombre: </span><span>${usuario.nombre}</span>
@@ -262,6 +263,8 @@ usuarios.forEach(function(usuario)
         </div>
       </div>`
 });
+
+div9Resultado.innerHTML = contenido;
 
 
 /*
