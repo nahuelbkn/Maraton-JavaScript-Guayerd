@@ -37,3 +37,17 @@ span.hecho
   background-color: rgb(15, 128, 15);
   color: aliceblue;
 }
+
+input
+{
+  display: block;
+  margin-top: 3px;
+  margin-bottom: 15px;
+}
+
+select
+{
+  display: block;
+  margin-top: 3px;
+  margin-bottom: 15px;
+}

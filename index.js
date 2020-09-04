@@ -292,10 +292,334 @@ Ej - 10: Nuestro cliente es una empresa de marketing que busca generar una base 
 
 
 
+const formulario = document.querySelector(".ej10-form");
 
 
+//Creo un formulario
+let form = document.createElement("form");
+form.classList.add("ejercicio-10");
+form.setAttribute("method", "GET");
+formulario.appendChild(form);
+//-----------------------------------------------------------
 
 
+//Creo input Nombre
+let input_nombre = document.createElement("input");
+input_nombre.setAttribute("type", "text");
+input_nombre.setAttribute("name", "nombre");
+input_nombre.setAttribute("placeholder", "Ingrese su nombre");
+input_nombre.setAttribute("id", "nombre");
+input_nombre.required = "true";
+
+
+//Creo label de nombre
+let label_nombre = document.createElement("label");
+label_nombre.setAttribute("for", "nombre");
+label_nombre.innerText = " Nombre: ";
+
+
+//Agrego el nombre y el input del nombre al formulario
+form.appendChild(label_nombre);
+form.appendChild(input_nombre);
+//-----------------------------------------------------------
+
+
+//creo el input mail
+let input_email = document.createElement("input");
+input_email.setAttribute("type", "email");
+input_email.setAttribute("name", "email");
+input_email.setAttribute("placeholder" , "Ingrese su mail");
+input_email.setAttribute("id", "email");
+input_email.required = "true";
+
+
+//Creo label de mail
+let label_email = document.createElement("label");
+label_email.setAttribute("for", "email");
+label_email.innerText = " Email: ";
+
+
+//Agrego el nombre y el input del mail al formulario
+form.appendChild(label_email);
+form.appendChild(input_email);
+//-----------------------------------------------------------
+
+
+//Creo el input de telefono
+let input_telefono = document.createElement("input");
+input_telefono.setAttribute("type", "number");
+input_telefono.setAttribute("name", "telefono");
+input_telefono.setAttribute("placeholder", "Ingrese su telefono"); 
+input_telefono.setAttribute("id", "telefono");
+input_telefono.setAttribute("required", "true");
+
+
+//Creo label de telefono
+let label_telefono = document.createElement("label");
+label_telefono.setAttribute("for", "telefono");
+label_telefono.innerText = " Telefono: ";
+
+
+//Agrego el nombre y el input del telefono al formulario
+form.appendChild(label_telefono);
+form.appendChild(input_telefono);
+//-----------------------------------------------------------
+
+
+//creo select de horarios de contacto
+let select_horarios = document.createElement("select");
+select_horarios.setAttribute("id", "horariosDeContacto");
+select_horarios.setAttribute("name", "horarios_contacto");
+select_horarios.setAttribute("value", "horarios de contacto");
+select_horarios.required = "true";
+
+let option_horario_manana = document.createElement("option");
+option_horario_manana.value = "Mañana";
+option_horario_manana.innerText = "Mañana";
+
+let option_horario_tarde = document.createElement("option");
+option_horario_tarde.value = "Tarde";
+option_horario_tarde.innerText = "Tarde";
+
+let option_horario_noche = document.createElement("option");
+option_horario_noche.value = "Noche";
+option_horario_noche.innerText = "Noche";
+
+
+//Creo label de horarios de contacto
+let label_horarios = document.createElement("label");
+label_horarios.setAttribute("for", "horarios_contacto");
+label_horarios.innerText = "Horario de contacto: ";
+
+
+//Agrego las opciones al select
+select_horarios.appendChild(option_horario_manana);
+select_horarios.appendChild(option_horario_tarde);
+select_horarios.appendChild(option_horario_noche);
+
+
+//Agrego el select al formulario
+form.appendChild(label_horarios);
+form.appendChild(select_horarios);
+//-----------------------------------------------------------
+
+
+//Creo el select de productos
+let select_productos = document.createElement("select");
+select_productos.setAttribute("id", "productos");
+select_productos.setAttribute("name", "productos");
+select_productos.required = "true";
+
+let option_producto_creditos = document.createElement("option");
+option_producto_creditos.value = "creditos";
+option_producto_creditos.innerText = "Creditos";
+
+let option_producto_celular = document.createElement("option");
+option_producto_celular.value = "celular";
+option_producto_celular.innerText = "Celular";
+
+let option_producto_viajes = document.createElement("option");
+option_producto_viajes.value = "viajes";
+option_producto_viajes.innerText = "Viajes";
+
+let option_producto_seguros = document.createElement("option");
+option_producto_seguros.value = "seguros";
+option_producto_seguros.innerText = "Seguros";
+
+
+//Creo label de horarios de contacto
+let label_productos = document.createElement("label");
+label_productos.setAttribute("for", "productos");
+label_productos.innerText = "Productos: ";
+
+
+//Agrego las opciones al select
+select_productos.appendChild(option_producto_creditos);
+select_productos.appendChild(option_producto_celular);
+select_productos.appendChild(option_producto_viajes);
+select_productos.appendChild(option_producto_seguros);
+
+
+//Agrego el select al formulario
+form.appendChild(label_productos);
+form.appendChild(select_productos);
+//-----------------------------------------------------------
+
+
+//Creo el boton Guardar
+let boton_guardar = document.createElement("button");
+boton_guardar.setAttribute("type", "submit");
+boton_guardar.setAttribute("id" , "boton-guardar")
+boton_guardar.innerText = "Guardar";
+form.appendChild(boton_guardar);
+//-----------------------------------------------------------
+
+
+//Creo el boton Finalizar
+let boton_finalizar = document.createElement("button");
+boton_finalizar.setAttribute("type", "submit");
+boton_finalizar.setAttribute("id", "boton-finalizar");
+boton_finalizar.innerText = "Finalizar";
+form.appendChild(boton_finalizar);
+//-----------------------------------------------------------
+
+
+// Definicion de variables y constantes
+const guardar = document.querySelector("#boton-guardar");
+const finalizar = document.querySelector("#boton-finalizar");
+const ej10_resultados = document.querySelector("div.ej10-resultado");
+let nombre = document.querySelector("#nombre");
+let email = document.querySelector("#email");
+let telefono = document.querySelector("#telefono");
+let horario = document.querySelector("#horariosDeContacto");
+let producto = document.querySelector("#productos");
+
+
+//Clave del LS
+const CONTACTS_LS = "contactos";
+
+
+// Identificador único para consultas al arreglo de constactos de LocalStorage
+let contactsFromLS;
+//-----------------------------------------------------------
+
+
+//Eventos-----------------------------------------------------------------------------------------------------------------------
+guardar.addEventListener("click" , guardarDatosContacto);
+finalizar.addEventListener("click" , finalizarHandler);
+telefono.addEventListener("blur", validarTelefono);
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+//Funciones Handler ---------------------------------------------------------------------------------------------------------
+function guardarDatosContacto(e)
+{
+  e.preventDefault();
+
+  contactsFromLS = localStorage.getItem(CONTACTS_LS);
+
+  if ( !existeEmail(email.value, JSON.parse(contactsFromLS)) )
+  {
+    let contacto = crearContacto(nombre.value , email.value , telefono.value , horario.value , producto.value);
+
+    if ((contactsFromLS === null)) 
+    {
+      let arrayContactos = [];
+      arrayContactos.push(contacto);
+      guardarDatosEnLS(arrayContactos);
+      limpiarCampos();
+    } 
+    else 
+    {
+      let contactos = JSON.parse(contactsFromLS);
+      contactos.push(contacto);
+      guardarDatosEnLS(contactos);
+      limpiarCampos();
+    }
+  }
+  else
+  {
+    alert("El mail ya está registrado en el sistema.")
+    email.value = "";
+  }
+}
+
+function finalizarHandler(e)
+{
+  e.preventDefault();
+  mostrarArray();
+}
+function mostrarArray()
+{
+  contactsFromLS = localStorage.getItem(CONTACTS_LS);
+  let contactos = JSON.parse(contactsFromLS);
+
+  let listado = document.createElement("ol");
+
+  contactos.forEach(function(contacto)
+  {
+    let itemContacto = document.createElement("li");
+
+    let listaContacto = document.createElement("ul");
+
+    let liNombre = document.createElement("li");
+    let liMail = document.createElement("li");
+    let liTelefono = document.createElement("li");
+    let liHorario = document.createElement("li");
+    let liProducto = document.createElement("li"); 
+
+    liNombre.innerText = contacto.nombre;
+    liMail.innerText = contacto.email;
+    liTelefono.innerText = contacto.telefono;
+    liHorario.innerText = contacto.horario;
+    liProducto.innerText = contacto.producto;
+
+    listaContacto.appendChild(liNombre);
+    listaContacto.appendChild(liMail);
+    listaContacto.appendChild(liTelefono);
+    listaContacto.appendChild(liHorario);
+    listaContacto.appendChild(liProducto);
+
+    itemContacto.appendChild(listaContacto);
+
+    listado.appendChild(itemContacto)
+  }); 
+
+  ej10_resultados.appendChild(listado);
+  localStorage.removeItem(CONTACTS_LS);
+
+}
+
+//Otras funciones --------------------------------------------------------------------------
+function guardarDatosEnLS(array)
+{
+  let string = JSON.stringify(array);
+  localStorage.setItem(CONTACTS_LS , string);
+}
+function crearContacto (nombre , email , telefono , horario , producto)
+{
+  let contacto = Object.assign({nombre, email, telefono, horario, producto}); 
+  return contacto;
+}
+
+
+function limpiarCampos()
+{
+  nombre.value = "";
+  email.value = "";
+  telefono.value = "";
+}
+
+function existeEmail(mail, array)
+{
+  let respuesta = false;
+
+  if ( array != null )
+  {
+    let i = 0;
+    while ( respuesta == false && i < array.length )
+    {
+      const contacto = array[i];
+      if ( contacto.email === mail )
+      {
+       respuesta = true;
+      }
+
+      i++;
+    }
+  }
+
+  return respuesta;
+}
+
+
+function validarTelefono()
+{
+  if ( isNaN(telefono.value) )
+  {
+    telefono.setCustomValidity("Formato incorrecto.");
+  }
+}
 
 
 
